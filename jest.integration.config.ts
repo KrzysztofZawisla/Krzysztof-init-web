@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
+///<reference path="global.d.ts" />
+
 import { join } from "path";
 import presetPuppeter from "jest-puppeteer/jest-preset";
 
