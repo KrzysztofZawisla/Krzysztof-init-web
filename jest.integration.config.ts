@@ -1,4 +1,5 @@
 import { join } from "path";
+import presetPuppeter from "jest-puppeteer/jest-preset";
 
 const config = {
   preset: "ts-jest",
@@ -6,12 +7,12 @@ const config = {
     "jest-extended",
     join(__dirname, "src", "setupTests.ts"),
   ],
-  testEnvironment: "jsdom",
   snapshotSerializers: ["@emotion/jest/serializer"],
   moduleNameMapper: {
     "^@root(.*)$": join(__dirname, "src"),
   },
-  modulePathIgnorePatterns: [join(__dirname, "src", "e2e")],
+  testMatch: ["**/*.integration.test.ts"],
+  ...presetPuppeter,
 };
 
 export default config;

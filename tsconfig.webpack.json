@@ -24,7 +24,7 @@
     "checkJs": true,
     "strictFunctionTypes": true,
     "importHelpers": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
@@ -32,6 +32,6 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
   },
-  "include": ["./"],
+  "include": ["."],
   "exclude": ["node_modules"]
 }

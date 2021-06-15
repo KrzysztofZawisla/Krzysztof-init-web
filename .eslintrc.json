@@ -55,7 +55,6 @@
     "unicorn/escape-case": "error",
     "unicorn/explicit-length-check": "warn",
     "unicorn/import-index": "error",
-    "unicorn/import-style": "error",
     "unicorn/new-for-builtins": "error",
     "unicorn/no-abusive-eslint-disable": "error",
     "unicorn/no-array-instanceof": "error",

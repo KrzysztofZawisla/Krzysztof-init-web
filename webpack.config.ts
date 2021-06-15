@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
+///<reference path="global.d.ts" />
+
 import { join, resolve } from "path";
 import TerserPlugin from "terser-webpack-plugin";
 import {
@@ -38,14 +41,9 @@ const getEntryPoint = (): string => {
   return join(__dirname, "src", "index.tsx");
 };
 
-const getBabelTarget = (targetToModern: boolean): string | string[] => {
+const getBabelTarget = (targetToModern: boolean): string => {
   return targetToModern
-    ? [
-        "last 2 Chrome versions",
-        "last 2 Firefox versions",
-        "not Firefox < 60",
-        "not Chrome < 60",
-      ]
+    ? "last 2 Chrome versions, last 2 Firefox versions, not Firefox < 60, not Chrome < 60"
     : "> 0.25%, not dead";
 };
 
@@ -241,9 +239,10 @@ const setupConfig = (
         mode !== "development" &&
           targetToModern &&
           new SitemapPlugin({
-            base: "" /* webpage URL */,
+            base: "https://google.com" /* webpage URL */,
             paths: [
-              /** paths here for example "/" */
+              "/",
+              /** paths here for example  */
             ],
             options: {
               filename: "../../map.xml",
@@ -291,7 +290,7 @@ const setupConfig = (
             writeToDisk: true,
           }
         : undefined,
-    };
+    } as Configuration;
   };
   return [getConfig(true)];
 };
