@@ -1,3 +1,4 @@
+import App from "~components/App/App";
 import { StrictMode } from "react";
 import { render } from "react-dom";
 
@@ -19,4 +20,9 @@ if (process.env.DEVELOPMENT) {
 
 const root: HTMLElement | null = document.querySelector("#root");
 
-render(<StrictMode></StrictMode>, root);
+render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  root,
+);

@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 const App: FC = (): JSX.Element => {
   return <></>;
 };
 
-export default App;
+export default memo(App);

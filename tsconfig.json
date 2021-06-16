@@ -33,9 +33,10 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@root/*": ["./*"],
-      "@pages/*": ["./pages/*"],
-      "@components/*": ["./components/*"]
+      "~root/*": ["./*"],
+      "~pages/*": ["./pages/*"],
+      "~components/*": ["./components/*"],
+      "~stores/*": ["./stores/*"]
     }
   },
   "include": ["./src"],

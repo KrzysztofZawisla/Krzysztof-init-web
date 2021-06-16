@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 const HomePage: FC = (): JSX.Element => {
-  return <></>;
+  return <div>Example home page</div>;
 };
 
-export default HomePage;
+export default memo(HomePage);

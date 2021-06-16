@@ -1,5 +1,5 @@
-import { createState } from "@hookstate/core";
 import i18n from "i18next";
+import { createState } from "@hookstate/core";
 
 export const isMobileGlobal = createState(
   window.innerWidth < 768 ? true : false,

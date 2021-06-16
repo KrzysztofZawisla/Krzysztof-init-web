@@ -1,5 +1,8 @@
 import { expectType } from "tsd";
-import { isMobileGlobal, languageGlobal } from "./globalStore";
+import {
+  isMobileGlobal,
+  languageGlobal,
+} from "~stores/globalStore/globalStore";
 
 describe("Global Store", () => {
   it("isMobileGlobal has correct type", () => {

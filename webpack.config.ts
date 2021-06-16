@@ -15,7 +15,6 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { GenerateSW } from "workbox-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
@@ -35,7 +34,8 @@ interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevelopmentServerConfiguration;
 }
 
-const { AggressiveMergingPlugin } = optimize;
+const { AggressiveMergingPlugin }: typeof optimize = optimize;
+const indexHTML: string = "index.html";
 
 const getEntryPoint = (): string => {
   return join(__dirname, "src", "index.tsx");
@@ -143,9 +143,10 @@ const setupConfig = (
             "@babel",
             "runtime",
           ),
-          "@root": join(__dirname, "src"),
-          "@pages": join(__dirname, "src", "pages"),
-          "@components": join(__dirname, "src", "components"),
+          "~root": join(__dirname, "src"),
+          "~pages": join(__dirname, "src", "pages"),
+          "~components": join(__dirname, "src", "components"),
+          "~stores": join(__dirname, "src", "stores"),
         },
       },
       experiments: {
@@ -159,7 +160,7 @@ const setupConfig = (
           }),
         new UnusedWebpackPlugin({
           directories: [join(__dirname, "src")],
-          exclude: ["*.test.ts", "*.test.tsx", "setupTests.ts"],
+          exclude: ["*.test.ts", "*.test.tsx", "setupTests.ts", indexHTML],
           root: __dirname,
         }),
         targetToModern &&
@@ -213,25 +214,9 @@ const setupConfig = (
             }-analyzer-report.html`,
           }),
         targetToModern &&
-          new CopyPlugin({
-            patterns: [
-              {
-                from: join(__dirname, "public"),
-                to: join(__dirname, "dist", "static"),
-                noErrorOnMissing: true,
-                globOptions: {
-                  ignore: ["**/index.html"],
-                },
-              },
-            ],
-            options: {
-              concurrency: 100,
-            },
-          }),
-        targetToModern &&
           new HtmlWebpackPlugin({
-            template: join(__dirname, "public", "index.html"),
-            filename: join(__dirname, "dist", "index.html"),
+            template: join(__dirname, "src", "assets", indexHTML),
+            filename: join(__dirname, "dist", indexHTML),
             scriptLoading: "blocking",
             minify: mode !== "development",
             inject: true,
@@ -292,7 +277,11 @@ const setupConfig = (
         : undefined,
     } as Configuration;
   };
-  return [getConfig(true)];
+  const config: Configuration[] = [getConfig(true)];
+  if (mode !== "development") {
+    config.push(getConfig(false));
+  }
+  return config;
 };
 
 export default setupConfig;
