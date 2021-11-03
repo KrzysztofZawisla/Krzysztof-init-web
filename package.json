@@ -31,7 +31,7 @@
     "@emotion/styled": "^11.3.0",
     "@hookstate/core": "^3.0.8",
     "@svgr/webpack": "^5.5.0",
-    "i18next": "^20.3.1",
+    "i18next": "^21.4.0",
     "i18next-browser-languagedetector": "^6.1.1",
     "i18next-xhr-backend": "^3.2.2",
     "lodash": "^4.17.21",
